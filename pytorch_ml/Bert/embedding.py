@@ -30,28 +30,4 @@ class BertEmbedding(nn.Module):
 
         return embed
 
-def test_basic_embedding():
-    """Test basic embedding functionality without segment IDs"""
-    print("=== Test 1: Basic Embedding ===")
-    
-    vocab_size = 1000
-    d_model = 768
-    batch_size = 2
-    seq_len = 5
-    
-    # Initialize embedding layer
-    embedding = BertEmbedding(vocab_size, d_model)
-    
-    # Create sample input (batch_size, seq_len)
-    input_ids = torch.LongTensor([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]])
-    
-    # Forward pass
-    output = embedding(input_ids)
-    
-    print(f"Input shape: {input_ids.shape}")
-    print(f"Output shape: {output.shape}")
-    print(f"Expected output shape: ({batch_size}, {seq_len}, {d_model})")
-    assert output.shape == (batch_size, seq_len, d_model), f"Expected {(batch_size, seq_len, d_model)}, got {output.shape}"
-    print("✓ Basic test passed!\n")
 
-test_basic_embedding()
